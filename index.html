@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#fff0df"><meta name="description" content="Ring-iQ — لعبة توصيل الحلقات الذكية">
+<title>Ring-iQ | تحدي الذكاء</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brain-badge">🧠</div><div><strong>رينغ آي كيو</strong><small>وصّل • فكّر • تألّق</small></div></div>
+    <div class="iq-box"><span>معدل ذكائك</span><strong id="iqScore">100</strong></div>
+  </header>
+  <section class="hero">
+    <div class="hero-title">IQ=<strong id="heroIQ">100</strong></div>
+    <div class="xp-track"><div id="progressFill" class="xp-fill"></div><span class="brain-mascot">🧠</span></div>
+    <div class="level-meta"><b id="levelLabel">المستوى 1</b><span id="progressLabel">0 / 2 روابط</span></div>
+  </section>
+  <section class="level-panel"><p id="levelGoal">وجّه فتحات الحلقات المتشابهة نحو بعضها لتوصيلها.</p></section>
+  <section class="game-card">
+    <div class="board-head"><b>لوحة الألغاز</b><span>انقر للتدوير · اسحب للتحريك</span></div>
+    <div class="board-shell"><div id="board" class="board" aria-label="لوحة اللعب"></div></div>
+    <div class="legend"><i></i><span>وجّه طرفي الحلقتين نحو بعضهما لتوصيلهما وإزالتهما تلقائياً</span></div>
+  </section>
+  <section class="controls">
+    <button id="hintBtn" class="action-btn hint"><span class="tool-icon">💡</span><b>تلميح</b><small>اعرض تطابقاً</small></button>
+    <button id="boostBtn" class="action-btn boost"><span class="tool-icon">🔨</span><b>مطرقة سحرية</b><small>وصّل زوجاً</small></button>
+    <button id="restartBtn" class="action-btn"><span class="tool-icon">↻</span><b>إعادة التشغيل</b><small>حاول مرة أخرى</small></button>
+  </section>
+  <nav class="bottom-nav"><button id="levelsBtn">🧩 <span>المراحل</span></button><button id="soundBtn">🔊 <span>الصوت يعمل</span></button></nav>
+</main>
+<div id="message" class="toast" role="status" aria-live="polite"></div>
+<div id="levelModal" class="modal hidden"><div class="modal-card"><button class="close" id="closeLevels">×</button><h2>اختر المرحلة</h2><p>أكمل المراحل لفتح تحديات جديدة.</p><div id="levelGrid" class="level-grid"></div></div></div>
+<div id="winModal" class="modal hidden"><div class="modal-card win-card"><div class="confetti">✨ 🎉 ✨</div><div class="trophy">🏆</div><h2>أحسنت! ذكاء رائع</h2><p id="winText">لقد وصلت جميع الحلقات.</p><div class="reward">+<strong id="rewardIQ">25</strong> نقطة ذكاء</div><button id="nextBtn" class="primary-btn">المرحلة التالية ←</button></div></div>
+<script src="game.js"></script>
+</body></html>
