@@ -1,4 +1,4 @@
-# Deploy the Ring IQ game from the uploaded ZIP to GitHub Pages
+# Deploy the current Ring-iQ web app from the repository root
 name: Deploy Ring IQ to Pages
 
 on:
@@ -25,19 +25,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract game files
+      - name: Prepare website
         run: |
           mkdir -p site
-          unzip -o ring_iq_puzzle_v1.zip -d site
-          test -f site/index.html
-          test -f site/style.css
-          test -f site/game.js
+          cp index.html style.css game.js site/
+          test -s site/index.html
+          test -s site/style.css
+          test -s site/game.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
         with:
           name: github-pages
           path: site
@@ -45,4 +45,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
