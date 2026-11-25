@@ -1,36 +1,34 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#fff0df"><meta name="description" content="Ring-iQ — لعبة توصيل الحلقات الذكية">
-<title>Ring-iQ | تحدي الذكاء</title><link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#faecd9">
+<title>Ring-iQ | فك التشابك</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="app">
   <header class="topbar">
-    <div class="brand"><div class="brain-badge">🧠</div><div><strong>رينغ آي كيو</strong><small>وصّل • فكّر • تألّق</small></div></div>
-    <div class="iq-box"><span>معدل ذكائك</span><strong id="iqScore">100</strong></div>
+    <button class="icon-btn" id="levelsBtn" aria-label="المراحل">☰</button>
+    <div class="level-name"><small>المرحلة</small><strong id="levelLabel">1</strong></div>
+    <div class="score"><small>النقاط</small><strong id="score">0</strong></div>
+    <button class="icon-btn" id="soundBtn" aria-label="الصوت">♫</button>
   </header>
-  <section class="hero">
-    <div class="hero-title">IQ=<strong id="heroIQ">100</strong></div>
-    <div class="xp-track"><div id="progressFill" class="xp-fill"></div><span class="brain-mascot">🧠</span></div>
-    <div class="level-meta"><b id="levelLabel">المستوى 1</b><span id="progressLabel">0 / 2 روابط</span></div>
+  <section class="progress-panel">
+    <div class="progress-copy"><span id="goalText">حرّر الحلقات واسحبها عبر الفتحات</span><b id="goalCount">0 / 3</b></div>
+    <div class="progress-track"><div id="progressFill"></div></div>
   </section>
-  <section class="level-panel"><p id="levelGoal">وجّه فتحات الحلقات المتشابهة نحو بعضها لتوصيلها.</p></section>
-  <section class="game-card">
-    <div class="board-head"><b>لوحة الألغاز</b><span>انقر للتدوير · اسحب للتحريك</span></div>
-    <div class="board-shell"><div id="board" class="board" aria-label="لوحة اللعب"></div></div>
-    <div class="legend"><i></i><span>وجّه طرفي الحلقتين نحو بعضهما لتوصيلهما وإزالتهما تلقائياً</span></div>
+  <section class="game-wrap">
+    <div class="board-caption"><b>فك التشابك</b><span>اسحب الحلقة حتى تخرج من اللوحة</span></div>
+    <canvas id="game" aria-label="لوحة لعبة فك تشابك الحلقات"></canvas>
+    <div class="drag-tip" id="dragTip">👆 اسحب الحلقة عبر الفتحة دون الاصطدام</div>
   </section>
-  <section class="controls">
-    <button id="hintBtn" class="action-btn hint"><span class="tool-icon">💡</span><b>تلميح</b><small>اعرض تطابقاً</small></button>
-    <button id="boostBtn" class="action-btn boost"><span class="tool-icon">🔨</span><b>مطرقة سحرية</b><small>وصّل زوجاً</small></button>
-    <button id="restartBtn" class="action-btn"><span class="tool-icon">↻</span><b>إعادة التشغيل</b><small>حاول مرة أخرى</small></button>
+  <section class="tools">
+    <button class="tool hint" id="hintBtn"><span>💡</span><b>تلميح</b><small>أظهر المسار</small></button>
+    <button class="tool hammer" id="hammerBtn"><span>🔨</span><b>مطرقة</b><small>فك مشبك واحد</small></button>
+    <button class="tool restart" id="restartBtn"><span>↻</span><b>إعادة</b><small>ابدأ من جديد</small></button>
   </section>
-  <nav class="bottom-nav"><button id="levelsBtn">🧩 <span>المراحل</span></button><button id="soundBtn">🔊 <span>الصوت يعمل</span></button></nav>
 </main>
-<div id="message" class="toast" role="status" aria-live="polite"></div>
-<div id="levelModal" class="modal hidden"><div class="modal-card"><button class="close" id="closeLevels">×</button><h2>اختر المرحلة</h2><p>أكمل المراحل لفتح تحديات جديدة.</p><div id="levelGrid" class="level-grid"></div></div></div>
-<div id="winModal" class="modal hidden"><div class="modal-card win-card"><div class="confetti">✨ 🎉 ✨</div><div class="trophy">🏆</div><h2>أحسنت! ذكاء رائع</h2><p id="winText">لقد وصلت جميع الحلقات.</p><div class="reward">+<strong id="rewardIQ">25</strong> نقطة ذكاء</div><button id="nextBtn" class="primary-btn">المرحلة التالية ←</button></div></div>
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="close">×</button><div class="modal-icon" id="modalIcon">🎉</div><h2 id="modalTitle">أحسنت!</h2><p id="modalText">تم تحرير جميع الحلقات.</p><button id="modalAction" class="primary">المرحلة التالية</button></div></div>
+<div id="levelsModal" class="modal hidden"><div class="modal-card"><button id="closeLevels" class="close">×</button><h2>اختر المرحلة</h2><div id="levelGrid" class="level-grid"></div></div></div>
 <script src="game.js"></script>
 </body></html>
