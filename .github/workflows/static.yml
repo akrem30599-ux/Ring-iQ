@@ -43,6 +43,9 @@ jobs:
           path: site
           retention-days: 1
 
+      - name: Wait for artifact registration
+        run: sleep 12
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
