@@ -1,4 +1,4 @@
-# Deploy the current Ring-iQ web app from the repository root
+# Deploy the disentanglement Ring-iQ game from the uploaded ZIP
 name: Deploy Ring IQ to Pages
 
 on:
@@ -25,10 +25,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare website
+      - name: Extract game package
         run: |
           mkdir -p site
-          cp index.html style.css game.js site/
+          unzip -o Ring-iQ_disentangle_v2.zip -d site
           test -s site/index.html
           test -s site/style.css
           test -s site/game.js
