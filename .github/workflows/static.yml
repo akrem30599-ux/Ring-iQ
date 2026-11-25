@@ -1,4 +1,4 @@
-# Deploy the disentanglement game from the repository root
+# Deploy the disentanglement game from the repository root (canvas sizing fix)
 name: Deploy Ring IQ to Pages
 
 on:
