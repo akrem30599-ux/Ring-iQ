@@ -17,7 +17,7 @@ function toast(s){const e=$('toast');e.textContent=s;e.classList.add('show');cle
 function norm(a){return Math.atan2(Math.sin(a),Math.cos(a));}
 function ringPoints(p,x=p.x,y=p.y,gap=p.gap){const pts=[],start=gap+.43,end=gap+Math.PI*2-.43;for(let a=start;a<=end+.001;a+=.075)pts.push({x:x+Math.cos(a)*p.r,y:y+Math.sin(a)*p.r});return pts;}
 function rodEnds(p){return[{x:p.x+p.x1,y:p.y+p.y1},{x:p.x+p.x2,y:p.y+p.y2}];}
-function shapeSegments(p,x=p.x,y=p.y,gap=p.gap){if(p.type==='rod'){const e=rodEnds(p);return[[e[0],e[1]]];}const pts=ringPoints(p,x,y,gap),out=[];for(let i=1;i<pts.length;i++)out.push([pts[i-1],pts[i]]);return out;}
+function shapeSegments(p,x=p.x,y=p.y,gap=p.gap){if(p.type==='rod'){return[[{x:x+p.x1,y:y+p.y1},{x:x+p.x2,y:y+p.y2}]];}const pts=ringPoints(p,x,y,gap),out=[];for(let i=1;i<pts.length;i++)out.push([pts[i-1],pts[i]]);return out;}
 function orient(a,b,c){return(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x)}
 function intersects(a,b,c,d){const o1=orient(a,b,c),o2=orient(a,b,d),o3=orient(c,d,a),o4=orient(c,d,b),e=.001;return((o1>e&&o2< -e)||(o1< -e&&o2>e))&&((o3>e&&o4< -e)||(o3< -e&&o4>e));}
 function pointSegDist(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,l=dx*dx+dy*dy;if(!l)return Math.hypot(p.x-a.x,p.y-a.y);const t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/l));return Math.hypot(p.x-a.x-t*dx,p.y-a.y-t*dy);}
