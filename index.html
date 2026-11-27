@@ -1,34 +1,44 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#faecd9">
-<title>Ring-iQ | فك التشابك</title><link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#f7e9d6">
+  <meta name="description" content="Ring-iQ — لعبة فك تشابك الحلقات بالسحب والمهارة">
+  <title>Ring-iQ | فك التشابك</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="app">
   <header class="topbar">
-    <button class="icon-btn" id="levelsBtn" aria-label="المراحل">☰</button>
-    <div class="level-name"><small>المرحلة</small><strong id="levelLabel">1</strong></div>
+    <button class="icon-btn" id="levelsBtn" aria-label="قائمة المراحل">☰</button>
+    <div class="level"><small>LEVEL</small><strong id="levelLabel">01</strong></div>
     <div class="score"><small>النقاط</small><strong id="score">0</strong></div>
     <button class="icon-btn" id="soundBtn" aria-label="الصوت">♫</button>
   </header>
   <section class="progress-panel">
-    <div class="progress-copy"><span id="goalText">حرّر الحلقات واسحبها عبر الفتحات</span><b id="goalCount">0 / 3</b></div>
+    <div class="progress-line"><span id="goalText">اسحب القطع المتشابكة حتى تتحرر</span><b id="goalCount" dir="ltr">0 / 0</b></div>
     <div class="progress-track"><div id="progressFill"></div></div>
   </section>
-  <section class="game-wrap">
-    <div class="board-caption"><b>فك التشابك</b><span>اسحب الحلقة حتى تخرج من اللوحة</span></div>
-    <canvas id="game" width="600" height="900" aria-label="لوحة لعبة فك تشابك الحلقات"></canvas>
-    <div class="drag-tip" id="dragTip">👆 اسحب الحلقة عبر الفتحة دون الاصطدام</div>
+  <section class="board-shell">
+    <div class="board-heading"><b>فك التشابك</b><span id="boardHint">اسحب الحلقة من جسمها، أو أمسك طرفها لتدويرها</span></div>
+    <canvas id="game" aria-label="لوحة فك تشابك الحلقات"></canvas>
+    <div class="feedback" id="feedback" aria-live="polite">حرّك الحلقة عبر الفتحة دون أن تصطدم بالقطع الأخرى</div>
   </section>
-  <section class="tools">
-    <button class="tool hint" id="hintBtn"><span>💡</span><b>تلميح</b><small>أظهر المسار</small></button>
-    <button class="tool hammer" id="hammerBtn"><span>🔨</span><b>مطرقة</b><small>فك مشبك واحد</small></button>
-    <button class="tool restart" id="restartBtn"><span>↻</span><b>إعادة</b><small>ابدأ من جديد</small></button>
+  <section class="tools" aria-label="أدوات اللعبة">
+    <button class="tool" id="hintBtn"><span class="tool-icon">💡</span><span class="tool-name">تلميح</span><small>اعرض القطعة المناسبة</small></button>
+    <button class="tool" id="hammerBtn"><span class="tool-icon">🔨</span><span class="tool-name">مطرقة</span><small>فك مشبكاً واحداً</small><i id="hammerCount">2</i></button>
+    <button class="tool" id="restartBtn"><span class="tool-icon">↻</span><span class="tool-name">إعادة</span><small>أعد ترتيب المرحلة</small></button>
   </section>
+  <footer>RING-IQ <span>•</span> فكّها بذكاء</footer>
 </main>
-<div id="toast" class="toast"></div>
-<div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="close">×</button><div class="modal-icon" id="modalIcon">🎉</div><h2 id="modalTitle">أحسنت!</h2><p id="modalText">تم تحرير جميع الحلقات.</p><button id="modalAction" class="primary">المرحلة التالية</button></div></div>
-<div id="levelsModal" class="modal hidden"><div class="modal-card"><button id="closeLevels" class="close">×</button><h2>اختر المرحلة</h2><div id="levelGrid" class="level-grid"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-card"><div class="modal-art" id="modalIcon">🏆</div><h2 id="modalTitle">أحسنت!</h2><p id="modalText">تم تحرير جميع القطع.</p><button class="primary" id="modalAction">المرحلة التالية</button></div>
+</div>
+<div class="modal hidden" id="levelsModal" role="dialog" aria-modal="true">
+  <div class="modal-card levels-card"><button class="close" id="closeLevels" aria-label="إغلاق">×</button><h2>اختر المرحلة</h2><p>افتح المراحل بالتتابع</p><div class="level-grid" id="levelGrid"></div></div>
+</div>
 <script src="game.js"></script>
-</body></html>
+</body>
+</html>
